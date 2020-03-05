@@ -28,8 +28,11 @@ function getResult(a,b,c){
 function getAverageMark(marks){
 
     let sumNum = 0;
-
-    if(marks.length > 5){
+    if(marks.length === 0){
+        console.log("Колличество оценок равно нулю");
+        return 0;
+    }
+    else if(marks.length > 5){
         console.log("Колличество оценок больше 5");
         marks.splice(5);
     };
