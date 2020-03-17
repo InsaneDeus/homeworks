@@ -100,19 +100,19 @@ class Stick extends Weapon{
 
 
 
-class LongBow extends Weapon{
+class LongBow extends Bow{
     constructor(){
         super("Длинный лук", 15, 200, 4);
     };
 };
 
-class Axe extends Weapon{
+class Axe extends Sword{
     constructor(){
         super("Секира", 27, 800, 1);
     };
 };
 
-class StormStick extends Weapon{
+class StormStick extends Stick{
     constructor(){
         super("Посох бури", 10, 300, 3);
     };
@@ -183,8 +183,10 @@ class StudentLog{
         this.sumSub = 0;
         this.longSubObj = 0
         for(let key in this.sub){
-            this.sumSub = this.sumSub + this.getAverageBySubject(key);
-            this.longSubObj = this.longSubObj + 1;
+            if(this.getAverageBySubject(key) != 0){
+                this.sumSub = this.sumSub + this.getAverageBySubject(key);
+                this.longSubObj = this.longSubObj + 1;
+            }
         };
         this.averageSub = this.sumSub / this.longSubObj;
         if(this.averageSub === NaN){
