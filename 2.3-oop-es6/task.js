@@ -102,19 +102,28 @@ class Stick extends Weapon{
 
 class LongBow extends Bow{
     constructor(){
-        super("Длинный лук", 15, 200, 4);
+        super();
+        this.name = "Длинный лук";
+        this.attack = 15;
+        this.range = 4;
     };
 };
 
 class Axe extends Sword{
     constructor(){
-        super("Секира", 27, 800, 1);
+        super();
+        this.name = "Секира";
+        this.attack = 27;
+        this.durability = 800;
     };
 };
 
 class StormStick extends Stick{
     constructor(){
-        super("Посох бури", 10, 300, 3);
+        super();
+        this.name = "Посох бури";
+        this.attack = 10;
+        this.range = 3;
     };
 };
 
