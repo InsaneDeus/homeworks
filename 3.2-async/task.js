@@ -15,7 +15,7 @@ class alarmClock{
     removeClock(id){
         this.alColsave = this.alarmCollection;
         this.alarmCollection = this.alarmCollection.filter((element, index) => this.alarmCollection[index].id != id);
-        return this.alColsave === this.alarmCollection;
+        return this.alColsave != this.alarmCollection;
     };
 
     getCurrentFormattedTime(){
@@ -23,24 +23,28 @@ class alarmClock{
         return `${("0" + worldTime.getHours()).slice(-2)}:${("0" + worldTime.getMinutes()).slice(-2)}`;
     };
 
-    checkClock(clockIndex){
-        if(this.alarmCollection[clockIndex].time === this.getCurrentFormattedTime()){
-            return this.alarmCollection[clockIndex].callback();
-        };
-    };
+    //checkClock(clockIndex){
+    //    if(this.alarmCollection[clockIndex].time === this.getCurrentFormattedTime()){
+    //        return this.alarmCollection[clockIndex].callback();
+    //    };
+    //};
 
     start(){
-        //function 
+        const checkClock = (clockIndex) => {
+            if(this.alarmCollection[clockIndex].time === this.getCurrentFormattedTime()){
+                return this.alarmCollection[clockIndex].callback();
+            };
+        };
         if(this.timerId === null){
             this.timerId = setInterval(this.alarmCollection.forEach((element, index) => {
-                this.checkClock(index);
+                /*this.*/checkClock(index);
             }), 60000);
         };
     };
 
     stop(){
-        if(this.timerId != underfined){
-            clearInterval(timerId);
+        if(this.timerId){
+            clearInterval(this.timerId);
             this.timerId = null;
         }
     };
@@ -57,10 +61,10 @@ class alarmClock{
 
 let testCase = new alarmClock();
 
-testCase.addClock("20:58", () => console.log("Скоро спать"), 1);
-testCase.addClock("20:59", () => { console.log("Пора готовиться ко сну!"); testCase.removeClock(2)}, 2);
-testCase.addClock("21:00", () => console.log("Иди умываться"), 3);
-testCase.addClock("21:01", () => {
+testCase.addClock("10:55", () => console.log("Скоро спать"), 1);
+testCase.addClock("10:56", () => { console.log("Пора готовиться ко сну!"); testCase.removeClock(2)}, 2);
+testCase.addClock("10:57", () => console.log("Иди умываться"), 3);
+testCase.addClock("10:58", () => {
     console.log("Иди спать, завтра рано на работу!");
     testCase.clearAlarms();
     testCase.printAlarms();
